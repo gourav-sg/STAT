@@ -71,6 +71,12 @@ sddv1
 
 
 #committing to github
+system("git add ./Correlations(20131104).R")
+system("git add ./statslab08.csv")
+system("git commit ./Correlations\\(20131104\\).R -m \"Committing\"")
+system("git commit ./statslab08.csv")
+system("git push")
+system("git status")
 
 
 
