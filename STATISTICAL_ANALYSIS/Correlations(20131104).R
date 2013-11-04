@@ -66,6 +66,29 @@ sddv1 <- sqrt(sum((dv1 - mdv1)^2)/(n-1))
 sddv1
 
 #plotting and checking what it all means
+(iv - miv)
+(dv1 - mdv1)
+(iv - miv)*(dv1 - mdv1)
+
+#entering the values in a data frame so that we can see it clearly
+#calculating covariance
+cvdf <- data.frame(iv, dv1, A=cbind(iv - miv),B=cbind(dv1 - mdv1), 
+           C=(iv - miv)*(dv1 - mdv1),
+           D=sum((iv - miv)*(dv1 - mdv1)),
+           E=sum((iv - miv)*(dv1 - mdv1))/(n-1)
+           )
+#seeing first five rows of the data frame 
+cvdf[c(1:5),]
+
+
+cvdf$E
+(sddv1*sdiv)
+
+correlation <- cvdf$E / (sddv1*sdiv)
+
+correlation
+
+#let us try to see what it all means graphically
 
 
 
