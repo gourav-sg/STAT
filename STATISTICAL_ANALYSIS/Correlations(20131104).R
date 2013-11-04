@@ -88,8 +88,22 @@ correlation <- cvdf$E / (sddv1*sdiv)
 
 correlation
 
-#let us try to see what it all means graphically
+#correcting this value as a vector
+correlation <- cvdf$E[1]/ (sddv1*sdiv)
 
+correlation
+
+#understanding the meaning graphically
+
+par(mfrow=c(1,1))
+plot(iv[c(1:3)], col="red")
+#the graph considers the value as Y axis the 
+#number of observation as X axis
+par(mfrow=c(1,2))
+plot(iv,col="red")
+plot(dv1)
+
+plot(data.frame(dv1,mdv1)[c(1:30),c(2)])
 
 
 
