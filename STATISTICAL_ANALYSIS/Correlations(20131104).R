@@ -97,13 +97,47 @@ correlation
 
 par(mfrow=c(1,1))
 plot(iv[c(1:3)], col="red")
+
 #the graph considers the value as Y axis the 
 #number of observation as X axis
-par(mfrow=c(1,2))
-plot(iv,col="red")
-plot(dv1)
 
-plot(data.frame(dv1,mdv1)[c(1:30),c(2)])
+par(mfrow=c(1,2))
+#by default the graph adjusts the y axis to start from 20
+plot(iv,col="red")
+#therefore we use range
+plot(iv,col="red",xlim=range(0:30),ylim=range(0:max(iv)))
+
+#plotting just the mean
+plot(data.frame(dv1,mdv1)[c(1:30),c(2)],type="l", col="blue")
+
+
+#learning to stitch the above together into a single graph
+
+#just entering both the variables does not help as shown below
+plot(iv,dv1)
+
+#stitching them together using both the variables also does not help because it
+# takes the range of x and y axis from above plot
+par(mfrow=c(1,1))
+plot(iv, dv1, type="n")
+points(iv,pch=1)
+points(dv1,pch=8)
+
+#just entering one variable does not solve the purpose because most of 
+# the values of iv are discarded when they are outside the max and min 
+# value range of dv1
+plot(dv1, type="n")
+points(dv1,pch=8)
+points(iv,pch=1)
+
+
+
+
+par(mfrow=c(1,1))
+plot(iv,dv1, type="n", xlim=range(0:length(iv)), ylim=range(0:max(max(iv),max(dv1))))
+points(dv1,pch=8)
+points(iv,pch=1,col="red")
+points(iv,dv1,pch=3, col="blue")
 
 
 
