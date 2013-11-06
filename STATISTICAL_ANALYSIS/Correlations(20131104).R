@@ -123,29 +123,45 @@ plot(iv, dv1, type="n")
 points(iv,pch=1)
 points(dv1,pch=8)
 
-#just entering one variable does not solve the purpose because most of 
-# the values of iv are discarded when they are outside the max and min 
-# value range of dv1
+#just entering one variable, in function plot(),  does not solve the purpose
+#because most of the values of iv are discarded when they are outside the max and min 
+#value range of dv1
 plot(dv1, type="n")
 points(dv1,pch=8)
-points(iv,pch=1)
-
+points(iv,pch=1, col="red")
+# as we can see from above that iv values are going out of the plot
 
 
 
 par(mfrow=c(1,1))
 plot(iv,dv1, type="n", xlim=range(0:length(iv)), ylim=range(-50:max(max(iv),max(dv1))))
-points(dv1,pch=8)
+#by entering ylim and xlim we are ensuring that while plotting the graph
+#we are ensuring the entire range of dots are visible
+#-50 is entered as lower range for ylim because of min(dv1 -mdv1)
+
+#iv plots
+#--------
 points(iv,pch=1,col="red")
-points(iv,dv1,pch=3, col="blue")
-#getting the line for mean for dv1
-points(data.frame(dv1,mdv1)[c(1:30),c(2)],type="l")
 #getting the line for mean for dv1
 points(data.frame(iv,miv)[c(1:30),c(2)],type="l",col="red")
-
+#step wise understanding of standard deviation
+#http://en.wikipedia.org/wiki/Standard_deviation
 points(data.frame(iv,(iv - miv))[c(1:30),c(2)],type="l",col="red", pch=10)
-points(data.frame(dv1,(dv1 - mdv1))[c(1:30),c(2)],type="l", pch=10)
+points(data.frame(iv,(iv - miv)^2/(length(iv)-1))[c(1:30),c(2)],type="l",col="red", pch=10)
+points(data.frame(iv,sqrt((iv - miv)^2/(length(iv)-1)))[c(1:30),c(2)],type="p",col="red", pch=10)
+points(data.frame(iv,sd(iv))[c(1:30),c(2)],type="p",col="red", pch=10)
 
+?plot
+
+#dv1 plots
+points(dv1,pch=8)
+#getting the line for mean for dv1
+points(data.frame(dv1,mdv1)[c(1:30),c(2)],type="l")
+
+
+
+points(data.frame(dv1,(dv1 - mdv1))[c(1:30),c(2)],type="l", pch=10)
+points(data.frame(dv1,sd(dv1))[c(1:30),c(2)],type="l",pch=10)
 points(data.frame(dv1,((dv1 - mdv1)*(iv - miv))/(length(iv) - 1))[c(1:30),c(2)],type="l", col="blue", pch=10)
 
 
@@ -156,6 +172,8 @@ system("git add ./Correlations\\(20131104\\).R")
 system("git add ./statslab08.csv")
 system("git commit ./Correlations\\(20131104\\).R -m \"Committing\"")
 system("git commit ./statslab08.csv")
+#the the system has been restarted then this comman may have to be run from the working 
+#directory where we are entering our secret key
 system("git push")
 system("git status")
 
