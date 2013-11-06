@@ -134,12 +134,22 @@ points(iv,pch=1)
 
 
 par(mfrow=c(1,1))
-plot(iv,dv1, type="n", xlim=range(0:length(iv)), ylim=range(0:max(max(iv),max(dv1))))
+plot(iv,dv1, type="n", xlim=range(0:length(iv)), ylim=range(-50:max(max(iv),max(dv1))))
 points(dv1,pch=8)
 points(iv,pch=1,col="red")
 points(iv,dv1,pch=3, col="blue")
+#getting the line for mean for dv1
+points(data.frame(dv1,mdv1)[c(1:30),c(2)],type="l")
+#getting the line for mean for dv1
+points(data.frame(iv,miv)[c(1:30),c(2)],type="l",col="red")
+
+points(data.frame(iv,(iv - miv))[c(1:30),c(2)],type="l",col="red", pch=10)
+points(data.frame(dv1,(dv1 - mdv1))[c(1:30),c(2)],type="l", pch=10)
+
+points(data.frame(dv1,((dv1 - mdv1)*(iv - miv))/(length(iv) - 1))[c(1:30),c(2)],type="l", col="blue", pch=10)
 
 
+       
 
 #committing to github
 system("git add ./Correlations\\(20131104\\).R")
